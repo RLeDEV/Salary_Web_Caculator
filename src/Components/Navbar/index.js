@@ -36,11 +36,9 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <div>
         <nav className="nav" id="navbar">
-          <div className="nav-content">
             <ul className="nav-items noselect">
-              <li className="nav-item">
+              <li className="nav-user-logo">
                 {
                 this.state.imageUrl !== '' ? 
                   <div>
@@ -85,9 +83,12 @@ export default class Navbar extends Component {
                 :
                 ''
               }
+              </ul>
+              <ul className="googleLoginBtn">
               <li className="googleLogin">
                 { this.state.name === '' ? 
                   <GoogleLogin
+                    className="login"
                     clientId="480493104816-k15kjma9hnclv82vadu9dj9c1jc2vocf.apps.googleusercontent.com"
                     buttonText="Login"
                     isSignedIn={true}
@@ -97,6 +98,7 @@ export default class Navbar extends Component {
                   />
                 :
                   <GoogleLogout
+                    className="login"
                     clientId="480493104816-k15kjma9hnclv82vadu9dj9c1jc2vocf.apps.googleusercontent.com"
                     buttonText="Logout"
                     onLogoutSuccess={this.logout}
@@ -104,9 +106,7 @@ export default class Navbar extends Component {
                 }
             </li>
             </ul>
-          </div>
         </nav>
-      </div>
     );
   }
 }

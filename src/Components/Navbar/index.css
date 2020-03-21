@@ -1,12 +1,3 @@
-.nav-logo {
-    padding-top: 1%;
-}
-
-.nav-content {
-    text-align: right !important;
-    padding-top: 2%;
-}
-
 .nav {
     background-color: var(--off-white);
     position: sticky;
@@ -15,33 +6,44 @@
     height: 60px;
     z-index: 1000;
     box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.15);
-}
-
-.nav .nav-content {
-    max-width: 900px;
-    padding: 0rem 3rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+nav div {
+    max-width: 900px;
     height: 100%;
-    text-align: right !important;
 }
 
-.nav-item {
-    display: inline-table;
+nav .nav-items{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding: ;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul .nav-item {
     color: #333;
-    line-height: 60px;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    flex: auto;
+    text-align: center;
 }
 
-.link {
+nav ul li {
+    margin-top: 5px;
+}
+
+.link { 
     color: black;
-    margin-left: 2rem;
-    padding-bottom: 10%;
 }
 
 .link:hover{
+    cursor: pointer;
     color: rgb(97, 97, 97);
-    margin-left: 2rem;
-    padding-bottom: 10%;
+    padding-bottom: 1rem;
     border-bottom: 2px solid rgb(173, 173, 173);
     text-decoration: none;
 }
@@ -57,10 +59,14 @@
 }
 
 .googleLogin {
-    display: inline-block;
-    position: fixed;
-    margin: 8px;
-    right: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.googleLogin:hover {
+    color: blue;
+    opacity: 0.5;
 }
 
 #profileImg {
