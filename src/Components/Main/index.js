@@ -5,16 +5,32 @@ import Dashboard from '../Dashboard';
 import Register from '../Register';
 
 class Main extends React.Component {
+    constructor(){
+        super();
+        this.initializeStates = this.initializeStates.bind(this);
+        this.state = {
+            name: '',
+            email: '',
+            imageUrl: ''
+        }
+    }
+
+    initializeStates = (email) => {
+        this.setState({
+            email: email,
+        })
+    }
+
     render() {
         return(
             <BrowserRouter>
             <div>
                 <div className="">
-                    <Navbar />
+                    <Navbar initializeStates={this.initializeStates}/>
                     <Switch>
                         <Route
                             exact path="/"
-                            component={Dashboard}
+                            render={props => <Dashboard email={this.state.email} />}
                         />
                         <Route
                             path="/register"

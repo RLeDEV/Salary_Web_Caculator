@@ -23,6 +23,7 @@ export default class Navbar extends Component {
       email: response.profileObj.email,
       imageUrl: response.profileObj.imageUrl
     })
+    this.props.initializeStates(this.state.email);
   }
 
   logout = (response) => {
@@ -40,29 +41,50 @@ export default class Navbar extends Component {
           <div className="nav-content">
             <ul className="nav-items noselect">
               <li className="nav-item">
-                {this.state.imageUrl !== '' ? 
-                <div>
-                  <img src={this.state.imageUrl} alt="img" id="profileImg" />
-                </div>
-                :
-                ''
+                {
+                this.state.imageUrl !== '' ? 
+                  <div>
+                    <img src={this.state.imageUrl} alt="img" id="profileImg" />
+                  </div>
+                  :
+                  ''
                 }
               </li>
               <li className="nav-item">
                 <NavLink className="link" exact to="/">
-                  Dashboard
+                  {this.state.name !== '' ? 'Dashboard' : 'Please log in to continue'}
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="link" to="/register">
-                  Register
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="link" to="/settings">
-                  Settings
-                </NavLink>
-              </li>
+              {
+              this.state.name !== '' ? 
+                <li className="nav-item">
+                  <NavLink className="link" to="/register">
+                    Add Employee
+                  </NavLink>
+                </li>
+                :
+                ''
+              }
+              {
+                this.state.name !== '' ? 
+                  <li className="nav-item">
+                    <NavLink className="link" to="/settings">
+                      View Employees
+                    </NavLink>
+                  </li>
+                  :
+                  ''
+              }
+              {
+                this.state.name !== '' ? 
+                <li className="nav-item">
+                  <NavLink className="link" to="/settings">
+                    Get Salary
+                  </NavLink>
+                </li>
+                :
+                ''
+              }
               <li className="googleLogin">
                 { this.state.name === '' ? 
                   <GoogleLogin

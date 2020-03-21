@@ -6,7 +6,7 @@ export default function Register() {
       <div className="section-content">
         <div className="subsection">
             <div className="subsection-title noselect">
-              Registeration Form
+              Add Employee
             </div>
             <div className="subsection-content">
               Full Name : <br />
