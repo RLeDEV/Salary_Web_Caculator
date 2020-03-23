@@ -2,7 +2,8 @@ import React from 'react'
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Navbar from '../Navbar';
 import Dashboard from '../Dashboard';
-import Register from '../Register';
+import Add from '../Add';
+import View from '../View';
 
 class Main extends React.Component {
     constructor(){
@@ -33,12 +34,12 @@ class Main extends React.Component {
                             render={props => <Dashboard email={this.state.email} />}
                         />
                         <Route
-                            path="/register"
-                            component={Register}
+                            path="/add"
+                            component={Add}
                         />
                         <Route
-                            path="/settings"
-                            component={Dashboard}
+                            path="/view"
+                            component={View}
                         />
                     </Switch>
                 </div>

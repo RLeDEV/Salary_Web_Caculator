@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Register() {
+export default function Add() {
   return (
     <div className="section">
       <div className="section-content">

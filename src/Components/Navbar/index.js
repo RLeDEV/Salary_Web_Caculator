@@ -56,7 +56,7 @@ export default class Navbar extends Component {
               {
               this.state.name !== '' ? 
                 <li className="nav-item">
-                  <NavLink className="link" to="/register">
+                  <NavLink className="link" to="/add">
                     Add Employee
                   </NavLink>
                 </li>
@@ -66,7 +66,7 @@ export default class Navbar extends Component {
               {
                 this.state.name !== '' ? 
                   <li className="nav-item">
-                    <NavLink className="link" to="/settings">
+                    <NavLink className="link" to="/view">
                       View Employees
                     </NavLink>
                   </li>
