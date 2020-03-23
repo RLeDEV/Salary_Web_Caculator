@@ -77,7 +77,7 @@ export default class Navbar extends Component {
                 this.state.name !== '' ? 
                 <li className="nav-item">
                   <NavLink className="link" to="/settings">
-                    Get Salary
+                    Calculate Salary
                   </NavLink>
                 </li>
                 :
