@@ -31,7 +31,8 @@ export default class Navbar extends Component {
       name: '',
       email: '',
       imageUrl: ''
-    })
+    });
+    this.props.logout();
   }
 
   render() {
@@ -86,7 +87,8 @@ export default class Navbar extends Component {
               </ul>
               <ul className="googleLoginBtn">
               <li className="googleLogin">
-                { this.state.name === '' ? 
+                { 
+                this.state.name === '' ? 
                   <GoogleLogin
                     className="login"
                     clientId="480493104816-k15kjma9hnclv82vadu9dj9c1jc2vocf.apps.googleusercontent.com"

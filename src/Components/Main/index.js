@@ -9,6 +9,7 @@ class Main extends React.Component {
     constructor(){
         super();
         this.initializeStates = this.initializeStates.bind(this);
+        this.logout = this.logout.bind(this);
         this.state = {
             name: '',
             email: '',
@@ -22,12 +23,20 @@ class Main extends React.Component {
         })
     }
 
+    logout = () => {
+        this.setState({
+            name: '',
+            email: '',
+            imageUrl: ''
+        })
+    }
+
     render() {
         return(
             <BrowserRouter>
             <div>
                 <div className="">
-                    <Navbar initializeStates={this.initializeStates}/>
+                    <Navbar initializeStates={this.initializeStates} logout={this.logout} />
                     <Switch>
                         <Route
                             exact path="/"
@@ -35,11 +44,11 @@ class Main extends React.Component {
                         />
                         <Route
                             path="/add"
-                            component={Add}
+                            render={props => <Add email={this.state.email} />}
                         />
                         <Route
                             path="/view"
-                            component={View}
+                            render={props => <View email={this.state.email} />}
                         />
                     </Switch>
                 </div>

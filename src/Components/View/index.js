@@ -6,6 +6,8 @@ const headings = [
     'Last Name',
     'City',
     'Hourly Basis',
+    'Hours Per Day',
+    'Days Per Month',
     '% Bonus Per Sale'
 ]
 
@@ -62,6 +64,7 @@ class View extends React.Component {
         )
     }
     render() {
+        console.log(this.props.email)
         return(
             <div className="section">
                 <div className="section-content">
@@ -70,7 +73,7 @@ class View extends React.Component {
                             View Employees
                         </div>
                     </div>
-                    {this.state.isFetching ? this.loadingBtn() : this.loadTable()}
+                    {this.state.isFetching || this.props.email === '' ? this.loadingBtn() : this.loadTable()}
                 </div>
             </div>
         );
@@ -94,6 +97,12 @@ class Item extends React.Component {
                 </td>
                 <td>
                     {this.props.item.hourlyBasis} $
+                </td>
+                <td>
+                    {this.props.item.hoursPerDay} hours
+                </td>
+                <td>
+                    {this.props.item.daysPerMonth} days
                 </td>
                 <td>
                     {this.props.item.percentPerSale} %
