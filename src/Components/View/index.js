@@ -4,8 +4,10 @@ import './index.css';
 class View extends React.Component {
     constructor(props){
         super(props);
+        this.loadingBtn = this.loadingBtn.bind(this);
         this.state = {
-            data: []
+            data: [],
+            isFetching: true
         }
     }
 
@@ -18,8 +20,18 @@ class View extends React.Component {
             this.setState({ 
                 data: data.data
             });
+            this.setState({isFetching: false});
         })
         .catch( error => console.log (error))
+
+    }
+
+    loadingBtn = () => {
+        return (
+            <div class="loadingio-spinner-pulse-d1ktdzklbz loading"><div class="ldio-z8mr9o1ztpp">
+            <div></div><div></div><div></div>
+            </div></div>
+        )
     }
 
     render() {
@@ -45,10 +57,14 @@ class View extends React.Component {
                                     return <th id="header" key={i}>{column}</th>;
                                 })}
                             </tr>
-                            {this.state.data.map((item,index)=> {
+                            </thead>
+                            { this.state.isFetching ? 
+                            this.loadingBtn()
+                            :
+                            this.state.data.map((item,index)=> {
                                 return <Item item={item} key={index} />  
-                            })}
-                        </thead>
+                            })
+                            }
                     </table>
                 </div>
             </div>
@@ -61,7 +77,7 @@ class Item extends React.Component {
     render() {
         return(
         <tr>
-            <td style={{'text-align': 'left'}}>
+            <td>
                 {this.props.item.firstName}
             </td>
             <td>

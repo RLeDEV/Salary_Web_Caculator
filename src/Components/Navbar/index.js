@@ -14,7 +14,7 @@ export default class Navbar extends Component {
       email: '',
       imageUrl: ''
     }
-    
+
   }
 
   responseGoogle = (response) => {
