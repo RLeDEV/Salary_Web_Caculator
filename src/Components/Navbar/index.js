@@ -50,9 +50,13 @@ export default class Navbar extends Component {
                 }
               </li>
               <li className="nav-item">
+              {this.state.name !== '' ? 
                 <NavLink className="link" exact to="/">
-                  {this.state.name !== '' ? 'Dashboard' : 'Please log in to continue'}
+                  Dashboard
                 </NavLink>
+                :
+                ''
+              }
               </li>
               {
               this.state.name !== '' ? 

@@ -15,7 +15,7 @@ class View extends React.Component {
     constructor(props){
         super(props);
         this.loadingBtn = this.loadingBtn.bind(this);
-        this.loadTable = this.loadTable.bind(this);
+        this.loadContent = this.loadContent.bind(this);
         this.state = {
             data: [],
             isFetching: true
@@ -23,17 +23,26 @@ class View extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/employees/all')
-        .then(response => {
-            return response.json();
+        var data = {
+            email: this.props.email
+        }
+        console.log('email: ' + this.props.email)
+        fetch('/employees/all',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
         })
-        .then( data => {
+        .then(function(response) {
+            if( response.status >= 400) {
+                throw new Error("Bad response from server.");
+            }
+            return response.json();
+        }).then( data => {
             this.setState({ 
                 data: data.data
             });
             this.setState({isFetching: false});
-        })
-        .catch( error => console.log (error))
+        }).catch( error => console.log (error))
     }
 
     loadingBtn = () => {
@@ -45,35 +54,36 @@ class View extends React.Component {
         )
     }
 
-    loadTable = () => {
+    loadContent = () => {
         return (
-            <table className="table rstable">
-                <thead>
-                    <tr >
-                        {headings.map(function(column, i) {
-                            return <th id="header" key={i}>{column}</th>;
-                        })}
-                    </tr>
-                    </thead>
-                    {
-                    this.state.data.map((item,index)=> {
-                        return <Item item={item} key={index} />  
-                    })
-                    }
-            </table>    
+            <div>
+                <div className="subsection">
+                            <div className="subsection-title noselect">
+                                View Employees
+                            </div>
+                </div>
+                <table className="table rstable">
+                    <thead>
+                        <tr >
+                            {headings.map(function(column, i) {
+                                return <th id="header" key={i}>{column}</th>;
+                            })}
+                        </tr>
+                        </thead>
+                        {
+                        this.state.data.map((item,index)=> {
+                            return <Item item={item} key={index} />  
+                        })
+                        }
+                </table>   
+            </div>
         )
     }
     render() {
-        console.log(this.props.email)
         return(
             <div className="section">
                 <div className="section-content">
-                    <div className="subsection">
-                        <div className="subsection-title noselect">
-                            View Employees
-                        </div>
-                    </div>
-                    {this.state.isFetching || this.props.email === '' ? this.loadingBtn() : this.loadTable()}
+                    {this.state.isFetching || this.props.email === '' ? this.loadingBtn() : this.loadContent()}
                 </div>
             </div>
         );

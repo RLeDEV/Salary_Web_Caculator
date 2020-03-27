@@ -5,6 +5,7 @@ const pino = require('express-pino-logger')();
 const mysql = require('mysql');
 
 const app = express();
+app.use(bodyParser.json());
 
 var connection = mysql.createPool({
     host: config.loginData.cnfHost,
@@ -17,10 +18,9 @@ var connection = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(pino);
 
-const selectEmployees = 'SELECT * FROM employees';
 
-app.get('/employees/all', (req, res) => {
-    connection.query(selectEmployees, (err, results) => {
+app.post('/employees/all', (req, res) => {
+    connection.query('SELECT * FROM employees WHERE ownerEmail = ?', [req.body.email], (err, results) => {
         if(err){
             console.log(err);
             return res.send(JSON.stringify({ data: err }));
