@@ -26,7 +26,6 @@ class View extends React.Component {
         var data = {
             email: this.props.email
         }
-        console.log('email: ' + this.props.email)
         fetch('/employees/all',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -59,7 +58,7 @@ class View extends React.Component {
             <div>
                 <div className="subsection">
                             <div className="subsection-title noselect">
-                                View Employees
+                                {this.props.email}'s employees
                             </div>
                 </div>
                 <table className="table rstable">
