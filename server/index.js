@@ -31,6 +31,27 @@ app.post('/employees/all', (req, res) => {
     });
 });
 
+app.post('/employees/add', (req, res) => {
+    var ownerEmail = req.body.email;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var city = req.body.city;
+    var hourlyBasis = req.body.hourlyBasis;
+    var hoursPerDay = req.body.hoursPerDay;
+    var daysPerMonth = req.body.daysPerMonth;
+    var percentPerSale = req.body.percentPerSale;
+    connection.query("INSERT INTO `employees`(`ownerEmail`,`firstName`,`lastName`,`city`,`hourlyBasis`,`hoursPerDay`,`daysPerMonth`,`percentPerSale`) VALUES ('"+ownerEmail+"','"+firstName+"','"+lastName+"','"+city+"','"+hourlyBasis+"','"+hoursPerDay+"','"+daysPerMonth+"','"+percentPerSale+"')",
+    (err, results) => {
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        else {
+            console.log("1 record inserted to `employees`.")
+        }
+    });
+});
+
 app.listen(3001, () =>{
     console.log('Server-side is running on port 3001!');
 })
