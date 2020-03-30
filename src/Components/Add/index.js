@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux';
 import './index.css';
 
 class Add extends React.Component {
@@ -61,7 +62,7 @@ class Add extends React.Component {
 
   sendForm = (email) => {
     var data = {
-      email: this.props.email,
+      email: this.props.user.email,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       city: this.state.city,
@@ -100,7 +101,7 @@ class Add extends React.Component {
 
           <div className="section"><span>2</span>Email</div>
           <div className="inner-wrap">
-            <label>Manager's Email Address <input type="email" name="field3" value={this.props.email} disabled/></label>
+            <label>Manager's Email Address <input type="email" name="field3" value={this.props.user.email} disabled/></label>
             <label>Employee's Email Address <input type="email" name="field3" onChange={this.onEmployeeEmailChange}/></label>
           </div>
           <div className="section"><span>3</span>Personal Information</div>
@@ -133,7 +134,7 @@ class Add extends React.Component {
       <div className="section-content">
         <div className="subsection">
           <div className="subsection-content">
-              {this.props.email !== '' ? this.isLoggedIn() : this.isNOTLoggedIn()}
+              {this.props.user.email !== '' ? this.isLoggedIn() : this.isNOTLoggedIn()}
             </div>
           </div>
       </div>
@@ -142,4 +143,8 @@ class Add extends React.Component {
   }
 }
 
-export default Add;
+const mapStateToProps = state => {
+  return { user: state.userEmail.user }
+}
+
+export default connect(mapStateToProps)(Add);

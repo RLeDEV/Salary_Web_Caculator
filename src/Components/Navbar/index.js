@@ -1,38 +1,23 @@
 import React, { Component } from "react";
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signIn } from '../../actions';
 import { GoogleLogin , GoogleLogout} from 'react-google-login';
 import './index.css';
 
 
-export default class Navbar extends Component {
-  constructor(props){
-    super(props);
-    this.responseGoogle = this.responseGoogle.bind(this);
-    this.logout = this.logout.bind(this);
-    this.state = {
-      name: '',
-      email: '',
-      imageUrl: ''
-    }
-
-  }
-
+class Navbar extends Component {
   responseGoogle = (response) => {
-    this.setState({
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-      imageUrl: response.profileObj.imageUrl
-    })
-    this.props.initializeStates(this.state.email);
+    this.props.signIn(response.profileObj)
   }
 
   logout = (response) => {
-    this.setState({
-      name: '',
+    const user = {
       email: '',
-      imageUrl: ''
-    });
-    this.props.logout();
+      imageUrl: '',
+      name: ''
+    }
+    this.props.signIn(user);
   }
 
   render() {
@@ -41,16 +26,16 @@ export default class Navbar extends Component {
             <ul className="nav-items noselect">
               <li className="nav-user-logo">
                 {
-                this.state.imageUrl !== '' ? 
+                this.props.user.name !== "" ? 
                   <div>
-                    <img src={this.state.imageUrl} alt="img" id="profileImg" />
+                    <img src={this.props.user.imageUrl} alt="img" id="profileImg" />
                   </div>
                   :
                   ''
                 }
               </li>
               <li className="nav-item">
-              {this.state.name !== '' ? 
+              {this.props.user.name !== "" ? 
                 <NavLink className="link" exact to="/">
                   Dashboard
                 </NavLink>
@@ -59,7 +44,7 @@ export default class Navbar extends Component {
               }
               </li>
               {
-              this.state.name !== '' ? 
+              this.props.user.name !== '' ? 
                 <li className="nav-item">
                   <NavLink className="link" to="/add">
                     Add Employee
@@ -69,7 +54,7 @@ export default class Navbar extends Component {
                 ''
               }
               {
-                this.state.name !== '' ? 
+                this.props.user.name !== "" ? 
                   <li className="nav-item">
                     <NavLink className="link" to="/view">
                       View Employees
@@ -79,7 +64,7 @@ export default class Navbar extends Component {
                   ''
               }
               {
-                this.state.name !== '' ? 
+                this.props.user.name !== "" ? 
                 <li className="nav-item">
                   <NavLink className="link" to="/settings">
                     Calculate Salary
@@ -92,7 +77,7 @@ export default class Navbar extends Component {
               <ul className="googleLoginBtn">
               <li className="googleLogin">
                 { 
-                this.state.name === '' ? 
+                this.props.user.name === "" ? 
                   <GoogleLogin
                     className="login"
                     clientId="480493104816-k15kjma9hnclv82vadu9dj9c1jc2vocf.apps.googleusercontent.com"
@@ -116,3 +101,9 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { user: state.userEmail.user }
+}
+
+export default connect(mapStateToProps, { signIn })(Navbar)
