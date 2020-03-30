@@ -6,10 +6,13 @@ const initialState = {
     }
 }
 
+const SIGN_IN = 'SIGN_IN';
+
 const userEmailReducer = (state = initialState, action) => {
     const { payload } = action
     switch(action.type) {
-        case 'SIGN_IN':
+        case SIGN_IN:
+            localStorage.setItem('user', payload.email);
             return {
                 ...state,
                 user: {

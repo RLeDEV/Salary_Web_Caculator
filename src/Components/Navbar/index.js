@@ -13,7 +13,7 @@ class Navbar extends Component {
 
   logout = (response) => {
     const user = {
-      email: '',
+      email: null,
       imageUrl: '',
       name: ''
     }

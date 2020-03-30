@@ -32,7 +32,6 @@ app.post('/employees/all', (req, res) => {
 });
 
 app.post('/employees/add', (req, res) => {
-    console.log(req.body)
     var ownerEmail = req.body.email;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;

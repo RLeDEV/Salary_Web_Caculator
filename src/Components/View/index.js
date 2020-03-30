@@ -18,13 +18,37 @@ class View extends React.Component {
         super(props);
         this.loadingBtn = this.loadingBtn.bind(this);
         this.loadContent = this.loadContent.bind(this);
+        this.initData = this.initData.bind(this);
         this.state = {
             data: [],
             isFetching: true
         }
     }
+    
 
     componentDidMount() {
+        var data = {
+            email: localStorage.getItem('user')
+        }
+        fetch('/employees/all',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            if( response.status >= 400) {
+                throw new Error("Bad response from server.");
+            }
+            return response.json();
+        }).then( data => {
+            this.setState({ 
+                data: data.data
+            });
+            this.setState({isFetching: false});
+        }).catch( error => console.log (error))
+    }
+
+    initData = () => {
         var data = {
             email: this.props.user.email
         }
@@ -60,7 +84,7 @@ class View extends React.Component {
             <div>
                 <div className="subsection">
                             <div className="subsection-title noselect">
-                                {this.props.user.email}'s employees
+                                {this.props.user.name}'s employees
                             </div>
                 </div>
                 <table className="table rstable">
@@ -84,7 +108,7 @@ class View extends React.Component {
         return(
             <div className="section">
                 <div className="section-content">
-                    {this.state.isFetching || this.props.user.email === '' ? this.loadingBtn() : this.loadContent()}
+                    {this.state.isFetching || this.props.user.email === null ? this.loadingBtn() : this.loadContent()}
                 </div>
             </div>
         );
