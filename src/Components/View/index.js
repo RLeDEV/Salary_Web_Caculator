@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { signIn } from '../../actions';
 import './index.css';
 
 const headings = [
@@ -24,7 +26,7 @@ class View extends React.Component {
 
     componentDidMount() {
         var data = {
-            email: this.props.email
+            email: this.props.user.email
         }
         fetch('/employees/all',{
             method: 'POST',
@@ -58,7 +60,7 @@ class View extends React.Component {
             <div>
                 <div className="subsection">
                             <div className="subsection-title noselect">
-                                {this.props.email}'s employees
+                                {this.props.user.email}'s employees
                             </div>
                 </div>
                 <table className="table rstable">
@@ -82,7 +84,7 @@ class View extends React.Component {
         return(
             <div className="section">
                 <div className="section-content">
-                    {this.state.isFetching || this.props.email === '' ? this.loadingBtn() : this.loadContent()}
+                    {this.state.isFetching || this.props.user.email === '' ? this.loadingBtn() : this.loadContent()}
                 </div>
             </div>
         );
@@ -121,4 +123,8 @@ class Item extends React.Component {
     )}
 }
 
-export default View;
+const mapStateToProps = state => {
+    return { user: state.userEmail.user }
+}
+
+export default connect(mapStateToProps, { signIn })(View);

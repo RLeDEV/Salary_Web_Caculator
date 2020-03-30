@@ -40,15 +40,15 @@ class Main extends React.Component {
                     <Switch>
                         <Route
                             exact path="/"
-                            render={props => <Dashboard email={this.state.email} />}
+                            render={props => <Dashboard />}
                         />
                         <Route
                             path="/add"
-                            render={props => <Add email={this.state.email} />}
+                            render={props => <Add />}
                         />
                         <Route
                             path="/view"
-                            render={props => <View email={this.state.email} />}
+                            render={props => <View />}
                         />
                     </Switch>
                 </div>
