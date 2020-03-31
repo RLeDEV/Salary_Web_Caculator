@@ -18,6 +18,7 @@ class Navbar extends Component {
       name: ''
     }
     this.props.signIn(user);
+    // window.location.href = '/'
   }
 
   render() {

@@ -48,7 +48,7 @@ class Main extends React.Component {
                         />
                         <Route
                             path="/view"
-                            render={props => <View />}
+                            render={(routeProps) => <View {...routeProps}/>} />}
                         />
                     </Switch>
                 </div>
