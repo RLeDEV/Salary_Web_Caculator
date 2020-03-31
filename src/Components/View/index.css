@@ -13,6 +13,10 @@
   outline: none;
 }
 
+.close:hover {
+  color: rgb(124, 0, 0)
+}
+
 .mark-done {
     background-color: rgba(255, 223, 223, 0.938);
     display: inline;
@@ -43,7 +47,7 @@
 }
 
 .rstable tr:hover{
-    background-color: rgb(255, 255, 255) !important;
+    background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
 } 
 

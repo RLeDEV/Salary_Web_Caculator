@@ -18,7 +18,7 @@ var connection = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(pino);
 
-
+// Display all employees under logged in user
 app.post('/employees/all', (req, res) => {
     connection.query('SELECT * FROM employees WHERE ownerEmail = ?', [req.body.email], (err, results) => {
         if(err){
@@ -31,6 +31,7 @@ app.post('/employees/all', (req, res) => {
     });
 });
 
+// Add new employee under logged in user
 app.post('/employees/add', (req, res) => {
     var ownerEmail = req.body.email;
     var firstName = req.body.firstName;
@@ -51,6 +52,21 @@ app.post('/employees/add', (req, res) => {
         }
     });
 });
+
+app.post('/employees/delete', (req, res) => {
+    var ownerEmail = req.body.ownerEmail;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    connection.query('DELETE FROM `employees` WHERE ownerEmail = ? and firstName = ? and lastName = ?', [ownerEmail,firstName,lastName],
+    function(err, results) {
+        if(err) {
+            console.log(err);
+            throw err;
+        }
+        console.log("1 record deleted from `employees`.")
+    }
+    )
+})
 
 app.listen(3001, () =>{
     console.log('Server-side is running on port 3001!');

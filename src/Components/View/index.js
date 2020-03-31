@@ -20,6 +20,7 @@ class View extends React.Component {
         super(props);
         this.loadingBtn = this.loadingBtn.bind(this);
         this.loadContent = this.loadContent.bind(this);
+        this.removeEmployee = this.removeEmployee.bind(this);
         this.state = {
             data: [],
             isFetching: true
@@ -28,6 +29,8 @@ class View extends React.Component {
     
 
     componentDidMount() {
+        if(localStorage.getItem('user') === null || localStorage.getItem('user') === 'null')
+            window.location.href = '/'
         var data = {
             email: localStorage.getItem('user')
         }
@@ -47,6 +50,37 @@ class View extends React.Component {
             });
             this.setState({isFetching: false});
         }).catch( error => console.log (error))
+    }
+
+    removeEmployee(employee) {
+        var data = {
+            ownerEmail: localStorage.getItem('user'),
+            firstName: employee.firstName,
+            lastName: employee.lastName
+        }
+        let employees = this.state.data;
+        for(let i = 0; i < employees.length; i++){
+            if(employees[i].id === employee.id){
+                employees = employees.splice(i, 1);
+            }
+        }
+        fetch('/employees/delete', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if(response.status >= 400){
+                throw new Error("Bad response from server");
+            }
+            return response.json;
+        }).then(function(data) {
+            if(data === "success"){
+                console.log("success");
+            }
+        }).catch(function(err) {
+            console.log(err);
+        })
+        this.setState({data: employees})
     }
 
     loadingBtn = () => {
@@ -76,7 +110,7 @@ class View extends React.Component {
                         </thead>
                         {
                         this.state.data.map((item,index)=> {
-                            return <Item item={item} key={index} />  
+                            return <Item item={item} key={index} removeItem={this.removeEmployee} />  
                         })
                         }
                 </table>   
@@ -97,6 +131,15 @@ class View extends React.Component {
 
 
 class Item extends React.Component {
+    constructor(props){
+        super(props);
+        this.onClickRemove = this.onClickRemove.bind(this);
+    }
+
+    onClickRemove() {
+        this.props.removeItem(this.props.item);
+    }
+
     render() {
         return(
         <tbody>
@@ -123,7 +166,7 @@ class Item extends React.Component {
                     {this.props.item.percentPerSale} %
                 </td>
                 <td>
-                    <button type="button" className="close">&times;</button>
+                    <button type="button" className="close" onClick={this.onClickRemove}>&times;</button>
                 </td>
             </tr>
         </tbody>
