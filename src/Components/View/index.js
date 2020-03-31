@@ -108,11 +108,9 @@ class View extends React.Component {
                             })}
                         </tr>
                         </thead>
-                        {
-                        this.state.data.map((item,index)=> {
+                        {this.state.data.map((item,index)=> {
                             return <Item item={item} key={index} removeItem={this.removeEmployee} />  
-                        })
-                        }
+                        })}
                 </table>   
             </div>
         )
@@ -144,30 +142,14 @@ class Item extends React.Component {
         return(
         <tbody>
             <tr>
-                <td>
-                    {this.props.item.firstName}
-                </td>
-                <td>
-                    {this.props.item.lastName}    
-                </td>
-                <td>
-                    {this.props.item.city}
-                </td>
-                <td>
-                    {this.props.item.hourlyBasis} $
-                </td>
-                <td>
-                    {this.props.item.hoursPerDay} hours
-                </td>
-                <td>
-                    {this.props.item.daysPerMonth} days
-                </td>
-                <td>
-                    {this.props.item.percentPerSale} %
-                </td>
-                <td>
-                    <button type="button" className="close" onClick={this.onClickRemove}>&times;</button>
-                </td>
+                <td>{this.props.item.firstName}</td>
+                <td>{this.props.item.lastName}</td>
+                <td>{this.props.item.city}</td>
+                <td>{this.props.item.hourlyBasis} $</td>
+                <td>{this.props.item.hoursPerDay} hours</td>
+                <td>{this.props.item.daysPerMonth} days</td>
+                <td>{this.props.item.percentPerSale} %</td>
+                <td><button type="button" className="close" onClick={this.onClickRemove}>&times;</button></td>
             </tr>
         </tbody>
     )}
