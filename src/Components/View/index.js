@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { signIn } from '../../actions';
+import { Redirect }from 'react-router-dom'
 import './index.css';
 
 const headings = [
@@ -10,7 +11,8 @@ const headings = [
     'Hourly Basis',
     'Hours Per Day',
     'Days Per Month',
-    '% Bonus Per Sale'
+    '% Bonus Per Sale',
+    ''
 ]
 
 class View extends React.Component {
@@ -18,7 +20,6 @@ class View extends React.Component {
         super(props);
         this.loadingBtn = this.loadingBtn.bind(this);
         this.loadContent = this.loadContent.bind(this);
-        this.initData = this.initData.bind(this);
         this.state = {
             data: [],
             isFetching: true
@@ -29,28 +30,6 @@ class View extends React.Component {
     componentDidMount() {
         var data = {
             email: localStorage.getItem('user')
-        }
-        fetch('/employees/all',{
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        })
-        .then(function(response) {
-            if( response.status >= 400) {
-                throw new Error("Bad response from server.");
-            }
-            return response.json();
-        }).then( data => {
-            this.setState({ 
-                data: data.data
-            });
-            this.setState({isFetching: false});
-        }).catch( error => console.log (error))
-    }
-
-    initData = () => {
-        var data = {
-            email: this.props.user.email
         }
         fetch('/employees/all',{
             method: 'POST',
@@ -104,11 +83,12 @@ class View extends React.Component {
             </div>
         )
     }
+
     render() {
         return(
             <div className="section">
                 <div className="section-content">
-                    {this.state.isFetching || this.props.user.email === null ? this.loadingBtn() : this.loadContent()}
+                    {this.props.user.email === null ? <Redirect to='/' /> :  this.state.isFetching ? this.loadingBtn() : this.loadContent()}
                 </div>
             </div>
         );
@@ -141,6 +121,9 @@ class Item extends React.Component {
                 </td>
                 <td>
                     {this.props.item.percentPerSale} %
+                </td>
+                <td>
+                    <button type="button" className="close">&times;</button>
                 </td>
             </tr>
         </tbody>
