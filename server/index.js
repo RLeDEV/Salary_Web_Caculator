@@ -55,9 +55,8 @@ app.post('/employees/add', (req, res) => {
 
 app.post('/employees/delete', (req, res) => {
     var ownerEmail = req.body.ownerEmail;
-    var firstName = req.body.firstName;
-    var lastName = req.body.lastName;
-    connection.query('DELETE FROM `employees` WHERE ownerEmail = ? and firstName = ? and lastName = ?', [ownerEmail,firstName,lastName],
+    var id = req.body.id;
+    connection.query('DELETE FROM `employees` WHERE ownerEmail = ? and id = ?', [ownerEmail,id],
     function(err, results) {
         if(err) {
             console.log(err);

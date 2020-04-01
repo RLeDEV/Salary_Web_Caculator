@@ -52,18 +52,13 @@ class View extends React.Component {
         }).catch( error => console.log (error))
     }
 
-    removeEmployee(employee) {
+    removeEmployee(employee,index) {
         var data = {
             ownerEmail: localStorage.getItem('user'),
-            firstName: employee.firstName,
-            lastName: employee.lastName
+            id: employee.id
         }
         let employees = this.state.data;
-        for(let i = 0; i < employees.length; i++){
-            if(employees[i].id === employee.id){
-                employees = employees.splice(i, 1);
-            }
-        }
+        employees.splice(index,1);
         fetch('/employees/delete', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -135,7 +130,7 @@ class Item extends React.Component {
     }
 
     onClickRemove() {
-        this.props.removeItem(this.props.item);
+        this.props.removeItem(this.props.item,this.props.key);
     }
 
     render() {
