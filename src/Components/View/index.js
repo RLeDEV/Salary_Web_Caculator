@@ -104,7 +104,7 @@ class View extends React.Component {
                         </tr>
                         </thead>
                         {this.state.data.map((item,index)=> {
-                            return <Item item={item} key={index} removeItem={this.removeEmployee} />  
+                            return <Item item={item} key={index} removeItem={() => this.removeEmployee(item, index)} />  
                         })}
                 </table>   
             </div>
@@ -130,7 +130,7 @@ class Item extends React.Component {
     }
 
     onClickRemove() {
-        this.props.removeItem(this.props.item,this.props.key);
+        this.props.removeItem(this.props.item);
     }
 
     render() {
