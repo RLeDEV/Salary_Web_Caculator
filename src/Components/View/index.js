@@ -23,7 +23,8 @@ class View extends React.Component {
         this.removeEmployee = this.removeEmployee.bind(this);
         this.state = {
             data: [],
-            isFetching: true
+            isFetching: true,
+            filter: ''
         }
     }
     
@@ -109,7 +110,7 @@ class View extends React.Component {
                         </tr>
                         </thead>
                         {
-                        filteredData.length > 0 ?
+                        this.state.filter !== '' ?
                         filteredData.map ((item,index) => {
                             return <Item item={item} key={index} removeItem={() => this.removeEmployee(item, index)} />  
                         })
