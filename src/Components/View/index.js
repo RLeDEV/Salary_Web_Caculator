@@ -88,12 +88,17 @@ class View extends React.Component {
     }
 
     loadContent = () => {
+        const filteredData = this.state.data.filter((e) => e.firstName.includes(this.state.filter) || e.lastName.includes(this.state.filter))
         return (
-            <div>
+            <div style={{overflowX: "auto"}}>
                 <div className="subsection">
                             <div className="subsection-title noselect">
                                 {this.props.user.name}'s employees
                             </div>
+                </div>
+                <div className="filter">
+                    <input type="text" className="tableFilter" placeholder="Filter" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
+                    <label for="name" class="form__label">Filter by name</label>
                 </div>
                 <table className="table rstable">
                     <thead>
@@ -103,9 +108,16 @@ class View extends React.Component {
                             })}
                         </tr>
                         </thead>
-                        {this.state.data.map((item,index)=> {
+                        {
+                        filteredData.length > 0 ?
+                        filteredData.map ((item,index) => {
                             return <Item item={item} key={index} removeItem={() => this.removeEmployee(item, index)} />  
-                        })}
+                        })
+                        :
+                        this.state.data.map((item,index)=> {
+                            return <Item item={item} key={index} removeItem={() => this.removeEmployee(item, index)} />  
+                        })
+                        }
                 </table>   
             </div>
         )
