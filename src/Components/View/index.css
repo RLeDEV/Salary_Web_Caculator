@@ -145,3 +145,31 @@
   padding-top: 0.5rem;
   font-weight: 900;
 }
+
+.exportBtnIn {
+  margin-bottom: 2%;
+  width: auto;
+  float: right;
+  padding: 0.3em 1.2em;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+.exportBtnIn:hover {
+  cursor: pointer;
+  background-color: #4095c6;
+}
+
+@media all and (max-width:30em) {
+  .exportBtnIn{
+    display:block;
+    margin: 0.2em auto;
+  }
+}

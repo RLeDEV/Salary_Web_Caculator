@@ -21,6 +21,7 @@ class View extends React.Component {
         this.loadingBtn = this.loadingBtn.bind(this);
         this.loadContent = this.loadContent.bind(this);
         this.removeEmployee = this.removeEmployee.bind(this);
+        this.exportCsv = this.exportCsv.bind(this);
         this.state = {
             data: [],
             isFetching: true,
@@ -79,6 +80,31 @@ class View extends React.Component {
         this.setState({data: employees})
     }
 
+    exportCsv = () => {
+        var headers = headings;
+        headers.unshift("id");
+        headers[8] = "Salary";
+        var csvRow = [];
+        var A = [headers];
+        var re = this.state.data;
+
+        for(var item = 0; item < re.length; item++){
+            A.push([item,re[item].firstName,re[item].lastName,re[item].city,re[item].hourlyBasis,re[item].hoursPerDay,re[item].daysPerMonth,re[item].percentPerSale])
+        }
+        for(var i = 0; i<A.length; ++i){
+            csvRow.push(A[i].join(","))
+        }
+        var csvString = csvRow.join("%0A");
+        var a = document.createElement("a");
+        a.href="data:attachment/csv," + csvString;
+        a.target="_Blank";
+        a.download="employees.csv";
+        document.body.appendChild(a);
+        a.click();
+
+        console.log(csvString);
+    }
+
     loadingBtn = () => {
         return (
             <center><div className="loadingio-spinner-pulse-d1ktdzklbz loading"><div className="ldio-z8mr9o1ztpp">
@@ -100,6 +126,11 @@ class View extends React.Component {
                 <div className="filter">
                     <input type="text" className="tableFilter" placeholder="Filter" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
                     <label htmlFor="name" className="form__label">Filter</label>
+                </div>
+                <div className="exportBtn">
+                    <div className="exportBtnIn" onClick={this.exportCsv}>
+                        Export CSV
+                    </div>
                 </div>
                 <table className="table rstable">
                     <thead>
