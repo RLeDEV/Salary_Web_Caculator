@@ -80,13 +80,13 @@ class View extends React.Component {
         this.setState({data: employees})
     }
 
-    exportCsv = () => {
+    exportCsv = (data) => {
         var headers = headings;
         headers.unshift("id");
         headers[8] = "Salary";
         var csvRow = [];
         var A = [headers];
-        var re = this.state.data;
+        var re = data;
 
         for(var item = 0; item < re.length; item++){
             A.push([item,re[item].firstName,re[item].lastName,re[item].city,re[item].hourlyBasis,re[item].hoursPerDay,re[item].daysPerMonth,re[item].percentPerSale])
@@ -126,7 +126,7 @@ class View extends React.Component {
                     <label htmlFor="name" className="form__label">Filter</label>
                 </div>
                 <div className="exportBtn">
-                    <div className="exportBtnIn" onClick={this.exportCsv}>
+                    <div className="exportBtnIn" onClick={() => filteredData.length > 0 ? this.exportCsv(filteredData) : this.exportCsv(this.state.data)}>
                         Export CSV
                     </div>
                 </div>
