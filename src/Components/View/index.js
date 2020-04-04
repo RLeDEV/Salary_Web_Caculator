@@ -89,7 +89,7 @@ class View extends React.Component {
     }
 
     loadContent = () => {
-        const filteredData = this.state.data.filter((e) => e.firstName.includes(this.state.filter) || e.lastName.includes(this.state.filter))
+        const filteredData = this.state.data.filter((e) => e.firstName.toLowerCase().includes(this.state.filter.toLowerCase()) || e.lastName.toLowerCase().includes(this.state.filter))
         return (
             <div style={{overflowX: "auto"}}>
                 <div className="subsection">
@@ -99,7 +99,7 @@ class View extends React.Component {
                 </div>
                 <div className="filter">
                     <input type="text" className="tableFilter" placeholder="Filter" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
-                    <label for="name" class="form__label">Filter by name</label>
+                    <label htmlFor="name" className="form__label">Filter</label>
                 </div>
                 <table className="table rstable">
                     <thead>
