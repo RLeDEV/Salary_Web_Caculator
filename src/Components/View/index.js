@@ -89,7 +89,7 @@ class View extends React.Component {
     }
 
     loadContent = () => {
-        const filteredData = this.state.data.filter((e) => e.firstName.toLowerCase().includes(this.state.filter.toLowerCase()) || e.lastName.toLowerCase().includes(this.state.filter))
+        const filteredData = this.state.data.filter((e) => e.firstName.toLowerCase().includes(this.state.filter.toLowerCase()) || e.lastName.toLowerCase().includes(this.state.filter.toLowerCase()))
         return (
             <div style={{overflowX: "auto"}}>
                 <div className="subsection">
@@ -128,7 +128,7 @@ class View extends React.Component {
         return(
             <div className="section">
                 <div className="section-content">
-                    {this.props.user.email === null ? <Redirect to='/' /> :  this.state.isFetching ? this.loadingBtn() : this.loadContent()}
+                    {this.props.user.isLoading === true ? <Redirect to='/' /> :  this.state.isFetching ? this.loadingBtn() : this.loadContent()}
                 </div>
             </div>
         );

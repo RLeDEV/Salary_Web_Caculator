@@ -2,7 +2,8 @@ const initialState = {
     user: {
         email: "",
         imageUrl: "",
-        name: ""
+        name: "",
+        isLoading: true
     }
 }
 
@@ -18,7 +19,8 @@ const userEmailReducer = (state = initialState, action) => {
                 user: {
                     email: payload.email,
                     imageUrl: payload.imageUrl,
-                    name: payload.name
+                    name: payload.name,
+                    isLoading: payload.isLoading
                 }
             }
         default:

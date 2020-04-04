@@ -8,6 +8,7 @@ import './index.css';
 
 class Navbar extends Component {
   responseGoogle = (response) => {
+    response.profileObj.isLoading = false;
     this.props.signIn(response.profileObj)
   }
 
@@ -15,7 +16,8 @@ class Navbar extends Component {
     const user = {
       email: null,
       imageUrl: '',
-      name: ''
+      name: '',
+      isLoading: true
     }
     this.props.signIn(user);
     // window.location.href = '/'
