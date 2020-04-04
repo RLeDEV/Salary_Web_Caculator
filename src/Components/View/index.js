@@ -101,8 +101,6 @@ class View extends React.Component {
         a.download="employees.csv";
         document.body.appendChild(a);
         a.click();
-
-        console.log(csvString);
     }
 
     loadingBtn = () => {
