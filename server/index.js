@@ -34,6 +34,7 @@ app.post('/employees/all', (req, res) => {
 // Add new employee under logged in user
 app.post('/employees/add', (req, res) => {
     var ownerEmail = req.body.email;
+    var employeeEmail = req.body.employeeEmail;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var city = req.body.city;
@@ -41,7 +42,7 @@ app.post('/employees/add', (req, res) => {
     var hoursPerDay = req.body.hoursPerDay;
     var daysPerMonth = req.body.daysPerMonth;
     var percentPerSale = req.body.percentPerSale;
-    connection.query("INSERT INTO `employees`(`ownerEmail`,`firstName`,`lastName`,`city`,`hourlyBasis`,`hoursPerDay`,`daysPerMonth`,`percentPerSale`) VALUES ('"+ownerEmail+"','"+firstName+"','"+lastName+"','"+city+"','"+hourlyBasis+"','"+hoursPerDay+"','"+daysPerMonth+"','"+percentPerSale+"')",
+    connection.query("INSERT INTO `employees`(`ownerEmail`,`employeeEmail`,`firstName`,`lastName`,`city`,`hourlyBasis`,`hoursPerDay`,`daysPerMonth`,`percentPerSale`) VALUES ('"+ownerEmail+"','"+employeeEmail+"','"+firstName+"','"+lastName+"','"+city+"','"+hourlyBasis+"','"+hoursPerDay+"','"+daysPerMonth+"','"+percentPerSale+"')",
     (err, results) => {
         if(err){
             console.log(err);
