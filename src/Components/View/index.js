@@ -5,13 +5,16 @@ import { Redirect }from 'react-router-dom'
 import './index.css';
 
 const headings = [
+    'Employee ID',
     'First Name',
     'Last Name',
+    'Employee\'s Email',
     'City',
     'Hourly Basis',
     'Hours Per Day',
     'Days Per Month',
     '% Bonus Per Sale',
+    'Total Sold',
     ''
 ]
 
@@ -83,13 +86,13 @@ class View extends React.Component {
     exportCsv = (data) => {
         var headers = headings;
         headers.unshift("id");
-        headers[8] = "Salary";
+        headers[11] = "Salary";
         var csvRow = [];
         var A = [headers];
         var re = data;
 
         for(var item = 0; item < re.length; item++){
-            A.push([item,re[item].firstName,re[item].lastName,re[item].city,re[item].hourlyBasis,re[item].hoursPerDay,re[item].daysPerMonth,re[item].percentPerSale])
+            A.push([item,re[item].id,re[item].firstName,re[item].lastName,re[item].employeeEmail,re[item].city,re[item].hourlyBasis,re[item].hoursPerDay,re[item].daysPerMonth,re[item].percentPerSale,re[item].totalSold])
         }
         for(var i = 0; i<A.length; ++i){
             csvRow.push(A[i].join(","))
@@ -106,7 +109,7 @@ class View extends React.Component {
     loadingBtn = () => {
         return (
             <center><div className="loadingio-spinner-pulse-d1ktdzklbz loading"><div className="ldio-z8mr9o1ztpp">
-            <div></div><div></div><div></div>Loading...
+            <div></div><div></div><div></div>
             </div></div>
             </center>
         )
@@ -176,16 +179,20 @@ class Item extends React.Component {
     }
 
     render() {
+        console.log(this.props.item)
         return(
         <tbody>
             <tr>
+                <td>{this.props.item.id}</td>
                 <td>{this.props.item.firstName}</td>
                 <td>{this.props.item.lastName}</td>
+                <td>{this.props.item.employeeEmail}</td>
                 <td>{this.props.item.city}</td>
                 <td>{this.props.item.hourlyBasis} $</td>
                 <td>{this.props.item.hoursPerDay} hours</td>
                 <td>{this.props.item.daysPerMonth} days</td>
                 <td>{this.props.item.percentPerSale} %</td>
+                <td>{this.props.item.totalSold} $</td>
                 <td><button type="button" className="close" onClick={this.onClickRemove}>&times;</button></td>
             </tr>
         </tbody>
