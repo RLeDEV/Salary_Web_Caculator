@@ -28,7 +28,7 @@ class Navbar extends Component {
       <div className="page-wrapper">
         <div className="nav-wrapper">
           <nav className="nav" id="navbar">
-            <div className="grad-bar"></div>
+            {/* <div className="grad-bar"></div> */}
               <ul className="nav-items noselect">
                 <li className="nav-user-logo">
                   {
@@ -42,8 +42,11 @@ class Navbar extends Component {
                 </li>
                 <li className="nav-item">
                 {
-                this.props.user.name !== "" ? 
+                this.props.user.name !== "" ?
                   <NavLink className="link" exact to="/">
+                    <div className="icon">
+                      <i className="fas fa-home"></i>
+                    </div>
                     Dashboard
                   </NavLink>
                   :
@@ -54,6 +57,9 @@ class Navbar extends Component {
                 this.props.user.name !== '' ? 
                   <li className="nav-item">
                     <NavLink className="link" to="/add">
+                    <div className="icon">
+                      <i className="fas fa-plus"></i>
+                    </div>
                       Add Employee
                     </NavLink>
                   </li>
@@ -64,7 +70,10 @@ class Navbar extends Component {
                   this.props.user.name !== "" ? 
                     <li className="nav-item">
                       <NavLink className="link" to="/view">
-                        View Employees
+                        <div className="icon">
+                          <i className="fas fa-eye"></i>
+                        </div>
+                          View Employees
                       </NavLink>
                     </li>
                     :
@@ -74,7 +83,10 @@ class Navbar extends Component {
                   this.props.user.name !== "" ? 
                   <li className="nav-item">
                     <NavLink className="link" to="/settings">
-                      Calculate Salary
+                      <div className="icon">
+                        <i className="fas fa-calculator"></i>
+                      </div>
+                        Calculate Salary
                     </NavLink>
                   </li>
                   :
