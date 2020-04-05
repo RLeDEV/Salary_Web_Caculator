@@ -96,7 +96,6 @@
   height: 200px;
   display: inline-block;
   overflow: hidden;
-  background: #f1f2f3;
 }
 .ldio-z8mr9o1ztpp {
   width: 100%;
@@ -121,7 +120,7 @@
   font-family: 'Montserrat', sans-serif;
   color: #333;
   font-size: 1.1rem;
-	margin: 0 auto;
+  margin-top: 1.5rem;
   padding: 0rem 1rem;
   border-radius: 0.5rem;
   background-color: rgb(255, 255, 255);

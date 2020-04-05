@@ -116,7 +116,12 @@ class View extends React.Component {
     }
 
     loadContent = () => {
-        const filteredData = this.state.data.filter((e) => e.firstName.toLowerCase().includes(this.state.filter.toLowerCase()) || e.lastName.toLowerCase().includes(this.state.filter.toLowerCase()))
+        // Filter method
+        const filteredData = this.state.data.filter((e) => 
+            e.id === parseInt(this.state.filter) || 
+            e.firstName.toLowerCase().includes(this.state.filter.toLowerCase()) ||
+            e.lastName.toLowerCase().includes(this.state.filter.toLowerCase())
+        )
         return (
             <div style={{overflowX: "auto"}}>
                 <div className="subsection">
@@ -179,7 +184,6 @@ class Item extends React.Component {
     }
 
     render() {
-        console.log(this.props.item)
         return(
         <tbody>
             <tr>
