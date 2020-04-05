@@ -27,8 +27,8 @@ class Navbar extends Component {
     return (
       <div className="page-wrapper">
         <div className="nav-wrapper">
-          <div className="grad-bar"></div>
-            <nav className="nav" id="navbar">
+          <nav className="nav" id="navbar">
+            <div className="grad-bar"></div>
               <ul className="nav-items noselect">
                 <li className="nav-user-logo">
                   {
