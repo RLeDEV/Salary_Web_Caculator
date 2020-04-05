@@ -63,6 +63,7 @@ class Add extends React.Component {
   sendForm = (email) => {
     var data = {
       email: this.props.user.email,
+      employeeEmail: this.state.employeeEmail,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       city: this.state.city,
@@ -93,24 +94,24 @@ class Add extends React.Component {
     return (
       <div className="form-style-10">
       <form>
-          <div className="section"><span>1</span>Full Name</div>
+          <div className="section"><span>1</span><label className="section-name">Full Name</label></div>
           <div className="inner-wrap">
             <label>First Name <input type="text" name="field1" onChange={this.onFirstNameChange} /></label>
             <label>Last Name <input type="text" name="field2" onChange={this.onLastNameChange} /></label>
           </div>
 
-          <div className="section"><span>2</span>Email</div>
+          <div className="section"><span>2</span><label className="section-name">Email</label></div>
           <div className="inner-wrap">
             <label>Manager's Email Address <input type="email" name="field3" value={this.props.user.email} disabled/></label>
             <label>Employee's Email Address <input type="email" name="field3" onChange={this.onEmployeeEmailChange}/></label>
           </div>
-          <div className="section"><span>3</span>Personal Information</div>
+          <div className="section"><span>3</span><label className="section-name">Personal Information</label></div>
             <div className="inner-wrap">
             <label>City <input type="text" name="field5" onChange={this.onCityChange} /></label>
-            <label>Hourly Basis (in $) <input type="text" name="field6" onChange={this.onHourlyBasisChange} /></label>
-            <label>Hours of work per day <input type="text" name="field7" onChange={this.onHoursOfWorkChange} /></label>
-            <label>Days of work per month <input type="text" name="field8" onChange={this.onDaysOfWorkChange} /></label>
-            <label>Bonus % per sale <input type="text" name="field9" onChange={this.onBonusChange} /></label>
+            <label>Hourly Basis (in $) <input type="text" name="field6" onChange={this.onHourlyBasisChange} defaultValue="15" /></label>
+            <label>Hours of work per day <input type="text" name="field7" onChange={this.onHoursOfWorkChange} defaultValue="8" /></label>
+            <label>Days of work per month <input type="text" name="field8" onChange={this.onDaysOfWorkChange} defaultValue="25" /></label>
+            <label>Bonus % per sale <input type="text" name="field9" onChange={this.onBonusChange} defaultValue="1.5" /></label>
           </div>
           <div className="button-section">
             <input type="submit" name="submit" onClick={this.sendForm} />

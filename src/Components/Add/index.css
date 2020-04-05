@@ -74,7 +74,7 @@
 .form-style-10 .section span {
 	background: #2A88AD;
 	padding: 5px 10px 5px 10px;
-	position: absolute;
+	/* position: absolute; */
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -83,6 +83,11 @@
 	margin-left: -45px;
 	color: #fff;
 	margin-top: -3px;
+}
+.form-style-10 .section-name{
+	padding-right: 2px;
+	font: normal 20px;
+	color: #2A88AD;
 }
 .form-style-10 input[type="button"], 
 .form-style-10 input[type="submit"]{
