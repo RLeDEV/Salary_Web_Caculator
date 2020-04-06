@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Navbar from '../Navbar';
+import Navbar2 from '../2Navbar';
 import Dashboard from '../Dashboard';
 import Add from '../Add';
 import View from '../View';
@@ -36,7 +37,8 @@ class Main extends React.Component {
             <BrowserRouter>
             <div>
                 <div className="">
-                    <Navbar initializeStates={this.initializeStates} logout={this.logout} />
+                    {/* <Navbar initializeStates={this.initializeStates} logout={this.logout} /> */}
+                    <Navbar2 />
                     <Switch>
                         <Route
                             exact path="/"

@@ -128,7 +128,7 @@ class View extends React.Component {
                             <div className="subsection-title noselect">
                                 {this.props.user.name}'s employees
                             </div>
-                </div>
+                
                 <div className="filter">
                     <input type="text" className="tableFilter" placeholder="Filter" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
                     <label htmlFor="name" className="form__label">Filter</label>
@@ -157,6 +157,7 @@ class View extends React.Component {
                         })
                         }
                 </table>   
+            </div>
             </div>
         )
     }
