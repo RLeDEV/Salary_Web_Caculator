@@ -21,6 +21,10 @@ class Add extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   onChangeHandler = (event) => {
     this.setState({
       ...this.state,
@@ -78,7 +82,7 @@ class Add extends React.Component {
           </div>
           <div className="section"><span>3</span><label className="section-name">Personal Information</label></div>
             <div className="inner-wrap">
-            <label>City <input type="text" name="field5" onChange={this.onChangeHandler} /></label>
+            <label>City <input type="text" name="city" onChange={this.onChangeHandler} /></label>
             <label>Hourly Basis (in $) <input type="text" name="hourlyBasis" onChange={this.onChangeHandler} defaultValue="15" /></label>
             <label>Hours of work per day <input type="text" name="hoursOfWork" onChange={this.onChangeHandler} defaultValue="8" /></label>
             <label>Days of work per month <input type="text" name="daysOfWork" onChange={this.onChangeHandler} defaultValue="25" /></label>
@@ -95,7 +99,7 @@ class Add extends React.Component {
   isNOTLoggedIn = () => {
     return (
       <div>
-        <center>Please log in to continue.</center>
+        <center>Adding now, please wait..</center>
       </div>
     )
   }
