@@ -26,7 +26,21 @@
 }
 
 .subsection-content{
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-bottom: 30px;
+  padding: 15px;
+  margin: 10px;
+  background: #fff;
+  line-height: 22px;
+}
+
+.subsection-content h3 {
+  display: inline-block;
+  color: #747474;
+  font-style: italic;
+  font-weight: 900;
+  padding-right: 15px;
+}
+
+.subsection-content .ability {
+  font-size: 17px;
+  color: #114875;
 }

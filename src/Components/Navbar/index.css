@@ -39,6 +39,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        text-decoration: none;
     }
 
     .wrapper .top-navbar .top-menu ul {

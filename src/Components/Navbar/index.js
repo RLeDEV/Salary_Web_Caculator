@@ -36,6 +36,7 @@ class Navbar extends React.Component {
         name: '',
         isLoading: true
     }
+    this.setState({dashboard: '', view: '', add: ''})
     this.props.signIn(user);
     // window.location.href = '/'
     }
@@ -57,7 +58,9 @@ class Navbar extends React.Component {
                 <div className="wrapper">
                     <div className="top-navbar">
                         <div className="top-menu">
-                            <div className="logo">EasyCalc</div>
+                            <NavLink style={{textDecoration: "none"}} className="link" exact to="/">
+                                <div className="logo">EasyCalc</div>
+                            </NavLink>
                             {
                             this.props.user.name !== "" ? 
                             <ul>
@@ -87,12 +90,12 @@ class Navbar extends React.Component {
                         </div>
                     </div>
                     <div className="sidebar" style={{ minWidth: expanded ? navWidthExpanded : navWidthCollapsed }} onMouseOver={() => this.setState({expanded: true})}>
-                    <Clickoutside // this will allow to close the sidebar when clicking outside of it
-                        onClickOutside={() => { // by changing the state expanded to false
-                            if(this.state.expanded === true){
-                        this.setState({ expanded: false });
-                        }}}
-                    ></Clickoutside>
+                        <Clickoutside // this will allow to close the sidebar when clicking outside of it
+                            onClickOutside={() => { // by changing the state expanded to false
+                                if(this.state.expanded === true){
+                            this.setState({ expanded: false });
+                            }}}
+                        ></Clickoutside>
                         <ul>
                             <NavLink className="link" exact to="/">
                                 <li className={this.state.dashboard} onClick={() => this.onChangeActive("dashboard")}>
