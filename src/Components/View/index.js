@@ -108,10 +108,12 @@ class View extends React.Component {
 
     loadingBtn = () => {
         return (
+            <div className="subsection">
             <center><div className="loadingio-spinner-pulse-d1ktdzklbz loading"><div className="ldio-z8mr9o1ztpp">
             <div></div><div></div><div></div>
             </div></div>
             </center>
+            </div>
         )
     }
 
@@ -125,13 +127,13 @@ class View extends React.Component {
         return (
             <div style={{overflowX: "auto"}}>
                 <div className="subsection">
-                            <div className="subsection-title noselect">
+                            <div className="subsectitle noselect">
                                 {this.props.user.name}'s employees
                             </div>
                 
                 <div className="filter">
                     <input type="text" className="tableFilter" placeholder="Filter" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
-                    <label htmlFor="name" className="form__label">Filter</label>
+                    <label htmlFor="name" className="form__label">Displaying results for {this.state.filter}</label>
                 </div>
                 <div className="exportBtn">
                     <div className="exportBtnIn" onClick={() => filteredData.length > 0 ? this.exportCsv(filteredData) : this.exportCsv(this.state.data)}>

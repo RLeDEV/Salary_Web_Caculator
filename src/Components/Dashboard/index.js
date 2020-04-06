@@ -6,29 +6,16 @@ export default function Dashboard() {
     <div className="section">
       <div className="section-content">
       <div className="subsection">
-          <div className="subsection-title noselect">
-            What is the process? 
+          <div className="subsectitle noselect">
+            About the process
           </div>
           <div className="subsection-content">
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-          </div>
-        </div>
-        <div className="subsection">
-          <div className="subsection-title noselect">
-            Currently Employees
-          </div>
-          <div className="subsection-content">
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
-            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text<br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
+            Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text <br />
           </div>
         </div>
       </div>

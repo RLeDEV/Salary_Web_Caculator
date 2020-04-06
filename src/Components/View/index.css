@@ -155,7 +155,7 @@
   text-decoration: none;
   font-weight: 300;
   color: #ffffff;
-  background-color: #4eb5f1;
+  background-color: #052755;
   text-align: center;
   transition: all 0.2s;
   font-family: 'Roboto', 'sans-serif';
@@ -163,7 +163,7 @@
 
 .exportBtnIn:hover {
   cursor: pointer;
-  background-color: #4095c6;
+  background-color: #013983;
 }
 
 @media all and (max-width:30em) {
