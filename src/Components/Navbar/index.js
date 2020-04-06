@@ -3,7 +3,15 @@ import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signIn } from '../../actions';
 import { GoogleLogin , GoogleLogout} from 'react-google-login';
+import {Route} from 'react-router-dom';
+import Clickoutside from './ClickOutside';
+import Dashboard from '../Dashboard';
+import Add from '../Add';
+import View from '../View';
 import './index.css';
+
+const navWidthCollapsed = 60;
+const navWidthExpanded = 210;
 
 class Navbar extends React.Component {
     constructor(props){
@@ -11,7 +19,8 @@ class Navbar extends React.Component {
         this.state = {
             dashboard: '',
             view: '',
-            add: ''
+            add: '',
+            expanded: false
         }
     }
 
@@ -41,8 +50,10 @@ class Navbar extends React.Component {
     }
 
     render() {
+        const { expanded } = this.state;
         return(
             <div className="nav-it">
+                <React.Fragment>
                 <div className="wrapper">
                     <div className="top-navbar">
                         <div className="top-menu">
@@ -75,7 +86,13 @@ class Navbar extends React.Component {
                             }
                         </div>
                     </div>
-                    <div className="sidebar">
+                    <div className="sidebar" style={{ minWidth: expanded ? navWidthExpanded : navWidthCollapsed }} onMouseOver={() => this.setState({expanded: true})}>
+                    <Clickoutside // this will allow to close the sidebar when clicking outside of it
+                        onClickOutside={() => { // by changing the state expanded to false
+                            if(this.state.expanded === true){
+                        this.setState({ expanded: false });
+                        }}}
+                    ></Clickoutside>
                         <ul>
                             <NavLink className="link" exact to="/">
                                 <li className={this.state.dashboard} onClick={() => this.onChangeActive("dashboard")}>
@@ -116,6 +133,21 @@ class Navbar extends React.Component {
                         </ul>
                     </div>
                 </div>
+                <div>
+                                <Route
+                                exact path="/"
+                                render={props => <Dashboard />}
+                                />
+                                <Route
+                                    path="/add"
+                                    render={props => <Add />}
+                                />
+                                <Route
+                                    path="/view"
+                                    render={(routeProps) => <View {...routeProps}/>} />}
+                                />
+                </div>
+            </React.Fragment>
             </div>
         )
     }
