@@ -7,57 +7,25 @@ class Add extends React.Component {
     super(props);
     this.isLoggedIn = this.isLoggedIn.bind(this);
     this.isNOTLoggedIn = this.isNOTLoggedIn.bind(this);
-    this.onBonusChange = this.onBonusChange.bind(this);
-    this.onCityChange = this.onCityChange.bind(this);
-    this.onDaysOfWorkChange = this.onDaysOfWorkChange.bind(this);
-    this.onEmployeeEmailChange = this.onEmployeeEmailChange.bind(this);
-    this.onHourlyBasisChange = this.onHourlyBasisChange.bind(this);
-    this.onHoursOfWorkChange = this.onHoursOfWorkChange.bind(this);
-    this.onFirstNameChange = this.onFirstNameChange.bind(this);
-    this.onLastNameChange = this.onLastNameChange.bind(this);
     this.sendForm = this.sendForm.bind(this);
     this.state = {
       firstName: '',
       lastName: '',
       employeeEmail: '',
       city: '',
-      hourlyBasis: 0,
-      daysOfWork : 0,
-      bonus: 0,
+      hourlyBasis: 15,
+      daysOfWork : 25,
+      hoursOfWork: 8,
+      bonus: 1.5,
       ownerEmail: ''
     }
   }
 
-  onFirstNameChange = (event) => {
-    this.setState({ firstName: event.target.value })
-  }
-
-  onLastNameChange = (event) => {
-    this.setState({ lastName: event.target.value })
-  }
-
-  onEmployeeEmailChange = (event) => {
-    this.setState({ employeeEmail: event.target.value })
-  }
-
-  onCityChange = (event) => {
-    this.setState({ city: event.target.value })
-  }
-
-  onHourlyBasisChange = (event) => {
-    this.setState({ hourlyBasis: event.target.value })
-  }
-
-  onDaysOfWorkChange = (event) => {
-    this.setState({ daysOfWork: event.target.value })
-  }
-
-  onBonusChange = (event) => {
-    this.setState({ bonus: event.target.value })
-  }
-  
-  onHoursOfWorkChange = (event) => {
-    this.setState({ hoursOfWork: event.target.value })
+  onChangeHandler = (event) => {
+    this.setState({
+      ...this.state,
+      [event.target.name]: event.target.value
+    })
   }
 
   sendForm = (email) => {
@@ -99,22 +67,22 @@ class Add extends React.Component {
       <form>
           <div className="section"><span>1</span><label className="section-name">Full Name</label></div>
           <div className="inner-wrap">
-            <label>First Name <input type="text" name="field1" onChange={this.onFirstNameChange} /></label>
-            <label>Last Name <input type="text" name="field2" onChange={this.onLastNameChange} /></label>
+            <label>First Name <input type="text" name="firstName" onChange={this.onChangeHandler} /></label>
+            <label>Last Name <input type="text" name="lastName" onChange={this.onChangeHandler} /></label>
           </div>
 
           <div className="section"><span>2</span><label className="section-name">Email</label></div>
           <div className="inner-wrap">
             <label>Manager's Email Address <input type="email" name="field3" value={this.props.user.email} disabled/></label>
-            <label>Employee's Email Address <input type="email" name="field3" onChange={this.onEmployeeEmailChange}/></label>
+            <label>Employee's Email Address <input type="email" name="employeeEmail" onChange={this.onChangeHandler}/></label>
           </div>
           <div className="section"><span>3</span><label className="section-name">Personal Information</label></div>
             <div className="inner-wrap">
-            <label>City <input type="text" name="field5" onChange={this.onCityChange} /></label>
-            <label>Hourly Basis (in $) <input type="text" name="field6" onChange={this.onHourlyBasisChange} defaultValue="15" /></label>
-            <label>Hours of work per day <input type="text" name="field7" onChange={this.onHoursOfWorkChange} defaultValue="8" /></label>
-            <label>Days of work per month <input type="text" name="field8" onChange={this.onDaysOfWorkChange} defaultValue="25" /></label>
-            <label>Bonus % per sale <input type="text" name="field9" onChange={this.onBonusChange} defaultValue="1.5" /></label>
+            <label>City <input type="text" name="field5" onChange={this.onChangeHandler} /></label>
+            <label>Hourly Basis (in $) <input type="text" name="hourlyBasis" onChange={this.onChangeHandler} defaultValue="15" /></label>
+            <label>Hours of work per day <input type="text" name="hoursOfWork" onChange={this.onChangeHandler} defaultValue="8" /></label>
+            <label>Days of work per month <input type="text" name="daysOfWork" onChange={this.onChangeHandler} defaultValue="25" /></label>
+            <label>Bonus % per sale <input type="text" name="bonus" onChange={this.onChangeHandler} defaultValue="1.5" /></label>
           </div>
           <div className="button-section">
             <input type="submit" name="submit" onClick={this.sendForm} />
