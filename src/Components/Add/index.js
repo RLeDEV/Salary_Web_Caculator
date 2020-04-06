@@ -25,6 +25,13 @@ class Add extends React.Component {
     window.scrollTo(0, 0)
   }
 
+  componentDidUpdate() {
+    if(localStorage.getItem('user') === null || localStorage.getItem('user') === 'null')
+    {
+      window.location.href = '/'
+    }
+  }
+
   onChangeHandler = (event) => {
     this.setState({
       ...this.state,
@@ -64,10 +71,11 @@ class Add extends React.Component {
 
   isLoggedIn = () => {
     return (
-      <div className="form-style-10">
-        <div className="subsectitle noselect">
+      <div>
+                <div className="subsectitle noselect">
             Add new employee
           </div>
+      <div className="form-style-10">
       <form>
           <div className="section"><span>1</span><label className="section-name">Full Name</label></div>
           <div className="inner-wrap">
@@ -92,6 +100,7 @@ class Add extends React.Component {
             <input type="submit" name="submit" onClick={this.sendForm} />
           </div>
       </form>
+      </div>
       </div>
     );
   }
