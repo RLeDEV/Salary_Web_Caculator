@@ -39,6 +39,11 @@
 	box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
 	border: 1px solid #000000;
 }
+
+.inner-wrap input {
+	outline: none;
+}
+
 .form-style-10 h1 > span{
 	display: block;
 	margin-top: 2px;
