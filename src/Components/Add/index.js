@@ -137,9 +137,7 @@ class Add extends React.Component {
     <div className="section">
       <div className="section-content">
         <div className="subsection">
-          <div className="subsection-content">
               {this.props.user.email !== '' ? this.isLoggedIn() : this.isNOTLoggedIn()}
-            </div>
           </div>
       </div>
     </div>
