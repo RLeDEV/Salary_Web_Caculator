@@ -3,6 +3,7 @@
 .table {
     margin-top: 25px;
     text-align: center;
+    border-collapse: collapse;
 }
 
 .table thead {
@@ -15,35 +16,6 @@
 
 .close:hover {
   color: rgb(124, 0, 0)
-}
-
-.mark-done {
-    background-color: rgba(255, 223, 223, 0.938);
-    display: inline;
-    margin-right: 5px;
-}
-
-.marked > .mark-done {
-    background-color: rgb(193, 235, 193);
-}
-
-.unmarked .mark-done:hover{
-    background-color: rgb(48, 173, 32);
-}
-
-.mark-done:hover > .icon{
-    color: rgb(255, 255, 255);
-}
-
-.marked {
-    color: rgb(39, 167, 39);
-    text-decoration: line-through;
-    font-weight: 900;
-
-}
-
-.unmarked {
-    color: rgb(207, 88, 88);
 }
 
 .rstable tr:hover{
@@ -103,7 +75,7 @@
   position: relative;
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  transform-origin: 0 0; 
 }
 .ldio-z8mr9o1ztpp div { box-sizing: content-box; }
 
