@@ -10,6 +10,10 @@ class Dashboard extends React.Component {
     this.onSuccess = this.onSuccess.bind(this);
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   onSuccess = () => {
     return (
       <div className="subsection">

@@ -34,6 +34,7 @@ class View extends React.Component {
     
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         if(localStorage.getItem('user') === null || localStorage.getItem('user') === 'null')
             window.location.href = '/'
         var data = {
