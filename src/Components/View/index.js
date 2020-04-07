@@ -10,10 +10,10 @@ const headings = [
     'Last Name',
     'Employee\'s Email',
     'City',
-    'Hourly Basis',
-    'Hours Per Day',
-    'Days Per Month',
-    '% Bonus Per Sale',
+    'Hourly.B',
+    'Hours.P.D',
+    'Days.P.M',
+    'Bonus%',
     'Total Sold',
     ''
 ]
