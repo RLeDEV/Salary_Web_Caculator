@@ -54,6 +54,24 @@ app.post('/employees/add', (req, res) => {
     });
 });
 
+app.post('/employees/update', (req, res) => {
+    var employeeEmail = req.body.employeeEmail;
+    var id = req.body.id;
+    var amount = req.body.amount;
+    var ownerEmail = req.body.ownerEmail;
+    connection.query("UPDATE employees SET totalSold= totalSold + ? WHERE id=? and employeeEmail =? and ownerEmail =?", [amount,id,employeeEmail,ownerEmail],
+    (err, results) => {
+        if(err){
+            console.log(err);
+            throw err;
+        }
+        else {
+            res.send({success: "success"});
+            console.log("1 record updated in `employees`.")
+        }
+    });
+});
+
 app.post('/employees/delete', (req, res) => {
     var ownerEmail = req.body.ownerEmail;
     var id = req.body.id;
@@ -63,6 +81,7 @@ app.post('/employees/delete', (req, res) => {
             console.log(err);
             throw err;
         }
+        res.send("success");
         console.log("1 record deleted from `employees`.")
     }
     )
