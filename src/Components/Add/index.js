@@ -72,9 +72,9 @@ class Add extends React.Component {
   isLoggedIn = () => {
     return (
       <div>
-                <div className="subsectitle noselect">
-            Add new employee
-          </div>
+        <div className="subsectitle noselect">
+          Add new employee
+        </div>
       <div className="form-style-10">
       <form>
           <div className="section"><span>1</span><label className="section-name">Full Name</label></div>

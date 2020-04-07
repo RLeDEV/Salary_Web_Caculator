@@ -8,6 +8,7 @@ import Clickoutside from './ClickOutside';
 import Dashboard from '../Dashboard';
 import Add from '../Add';
 import View from '../View';
+import UpdateSales from '../UpdateSales';
 import './index.css';
 
 const navWidthCollapsed = 60;
@@ -20,6 +21,7 @@ class Navbar extends React.Component {
             dashboard: '',
             view: '',
             add: '',
+            updateSale: '',
             expanded: false
         }
     }
@@ -46,6 +48,7 @@ class Navbar extends React.Component {
             dashboard: '',
             view: '',
             add: '',
+            updateSale: '',
             [sectionName]: 'active'
         })
     }
@@ -115,6 +118,14 @@ class Navbar extends React.Component {
                                     <span className="title">Add Employee</span>    
                                 </li>
                             </NavLink>
+                            <NavLink className="link" to="/update">  
+                                <li className={this.state.updateSale} onClick={() => this.onChangeActive("updateSale")}>
+                                    <span className="icon">
+                                    <i className="fas fa-pen" aria-hidden="true"></i>
+                                    </span>
+                                    <span className="title">Update Sales</span>    
+                                </li>
+                            </NavLink>
                             <NavLink className="link" to="/view">
                                 <li className={this.state.view} onClick={() => this.onChangeActive("view")}>
                                     <span className="icon">
@@ -137,18 +148,22 @@ class Navbar extends React.Component {
                     </div>
                 </div>
                 <div>
-                                <Route
-                                exact path="/"
-                                render={props => <Dashboard />}
-                                />
-                                <Route
-                                    path="/add"
-                                    render={props => <Add />}
-                                />
-                                <Route
-                                    path="/view"
-                                    render={(routeProps) => <View {...routeProps}/>} />}
-                                />
+                    <Route
+                    exact path="/"
+                    render={props => <Dashboard />}
+                    />
+                    <Route
+                        path="/add"
+                        render={props => <Add />}
+                    />
+                    <Route
+                        path="/update"
+                        render={props => <UpdateSales />}
+                    />
+                    <Route
+                        path="/view"
+                        render={(routeProps) => <View {...routeProps}/>} />}
+                    />
                 </div>
             </React.Fragment>
             </div>
