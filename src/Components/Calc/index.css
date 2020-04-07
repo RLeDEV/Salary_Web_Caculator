@@ -1,0 +1,128 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.table {
+    margin-top: 25px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table thead {
+    text-align: center;
+}
+
+.close:focus {
+  outline: none;
+}
+
+.close:hover {
+  color: rgb(124, 0, 0)
+}
+
+.rstable tr:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+} 
+
+.loading {
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+@keyframes ldio-z8mr9o1ztpp-1 {
+  0% { top: 36px; height: 128px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-z8mr9o1ztpp-2 {
+  0% { top: 41.99999999999999px; height: 116.00000000000001px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-z8mr9o1ztpp-3 {
+  0% { top: 48px; height: 104px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+.ldio-z8mr9o1ztpp div { position: absolute; width: 30px }.ldio-z8mr9o1ztpp div:nth-child(1) {
+  left: 35px;
+  background: #3d525f;
+  animation: ldio-z8mr9o1ztpp-1 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.2s
+}
+.ldio-z8mr9o1ztpp div:nth-child(2) {
+  left: 85px;
+  background: #667a8a;
+  animation: ldio-z8mr9o1ztpp-2 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.1s
+}
+.ldio-z8mr9o1ztpp div:nth-child(3) {
+  left: 135px;
+  background: #849aad;
+  animation: ldio-z8mr9o1ztpp-3 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: undefineds
+}
+
+.loadingio-spinner-pulse-d1ktdzklbz {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+}
+.ldio-z8mr9o1ztpp {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; 
+}
+.ldio-z8mr9o1ztpp div { box-sizing: content-box; }
+
+.filter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+}
+
+.tableFilter {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  padding: 0rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 100%;
+  z-index: 999;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.tableFilter:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
+}
+
+.form__label {
+  padding-top: 0.5rem;
+  font-weight: 900;
+}
+
+.subsection .explanantion {
+  margin-top: 50px;
+  font-size: 11px;
+}
+
+.subsection .explanantion span {
+  font-weight: 900;
+  margin-right: 5px;
+}

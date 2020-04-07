@@ -9,6 +9,7 @@ import Dashboard from '../Dashboard';
 import Add from '../Add';
 import View from '../View';
 import UpdateSales from '../UpdateSales';
+import Calc from '../Calc';
 import './index.css';
 
 const navWidthCollapsed = 60;
@@ -22,6 +23,7 @@ class Navbar extends React.Component {
             view: '',
             add: '',
             updateSale: '',
+            calc: '',
             expanded: false
         }
     }
@@ -49,6 +51,7 @@ class Navbar extends React.Component {
             view: '',
             add: '',
             updateSale: '',
+            calc: '',
             [sectionName]: 'active'
         })
     }
@@ -61,8 +64,8 @@ class Navbar extends React.Component {
                 <div className="wrapper">
                     <div className="top-navbar">
                         <div className="top-menu">
-                            <NavLink style={{textDecoration: "none"}} className="link" exact to="/">
-                                <div className="logo">EasyCalc</div>
+                            <NavLink style={{textDecoration: "none"}} className="logo" exact to="/">
+                                <div>EasyCalc</div>
                             </NavLink>
                             {
                             this.props.user.name !== "" ? 
@@ -134,12 +137,14 @@ class Navbar extends React.Component {
                                     <span className="title">View All</span>    
                                 </li>
                             </NavLink>
-                            <li>
-                                <span className="icon">
-                                <i className="fas fa-calculator" aria-hidden="true"></i>
-                                </span>
-                                <span className="title">Calc Salary</span>    
-                            </li>
+                            <NavLink className="link" to="/calc">
+                                <li className={this.state.calc} onClick={() => this.onChangeActive("calc")}>
+                                    <span className="icon">
+                                    <i className="fas fa-calculator" aria-hidden="true"></i>
+                                    </span>
+                                    <span className="title">Calc Salary</span>    
+                                </li>
+                            </NavLink>
                             </div>
                             :
                             ''
@@ -163,6 +168,10 @@ class Navbar extends React.Component {
                     <Route
                         path="/view"
                         render={(routeProps) => <View {...routeProps}/>} />}
+                    />
+                    <Route
+                        path="/calc"
+                        render={props => <Calc />}
                     />
                 </div>
             </React.Fragment>

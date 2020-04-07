@@ -8,23 +8,14 @@ const headings = [
     'Employee ID',
     'First Name',
     'Last Name',
-    'Employee\'s Email',
-    'City',
-    'Hourly.B',
-    'Hours.P.D',
-    'Days.P.M',
-    'Bonus%',
-    'Total Sold',
-    ''
+    'Calculated Salary'
 ]
 
-class View extends React.Component {
+class Calc extends React.Component {
     constructor(props){
         super(props);
         this.loadingBtn = this.loadingBtn.bind(this);
         this.loadContent = this.loadContent.bind(this);
-        this.removeEmployee = this.removeEmployee.bind(this);
-        this.exportCsv = this.exportCsv.bind(this);
         this.state = {
             data: [],
             isFetching: true,
@@ -58,55 +49,6 @@ class View extends React.Component {
         }).catch( error => console.log (error))
     }
 
-    removeEmployee(employee,index) {
-        var data = {
-            ownerEmail: localStorage.getItem('user'),
-            id: employee.id
-        }
-        let employees = this.state.data;
-        employees.splice(index,1);
-        fetch('/employees/delete', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        }).then(function(response) {
-            if(response.status >= 400){
-                throw new Error("Bad response from server");
-            }
-            return response.json;
-        }).then(function(data) {
-            if(data === "success"){
-                console.log("success");
-            }
-        }).catch(function(err) {
-            console.log(err);
-        })
-        this.setState({data: employees})
-    }
-
-    exportCsv = (data) => {
-        var headers = headings;
-        headers.unshift("id");
-        headers[11] = "Salary";
-        var csvRow = [];
-        var A = [headers];
-        var re = data;
-
-        for(var item = 0; item < re.length; item++){
-            A.push([item,re[item].id,re[item].firstName,re[item].lastName,re[item].employeeEmail,re[item].city,re[item].hourlyBasis,re[item].hoursPerDay,re[item].daysPerMonth,re[item].percentPerSale,re[item].totalSold])
-        }
-        for(var i = 0; i<A.length; ++i){
-            csvRow.push(A[i].join(","))
-        }
-        var csvString = csvRow.join("%0A");
-        var a = document.createElement("a");
-        a.href="data:attachment/csv," + csvString;
-        a.target="_Blank";
-        a.download="employees.csv";
-        document.body.appendChild(a);
-        a.click();
-    }
-
     loadingBtn = () => {
         return (
             <div className="subsection">
@@ -129,17 +71,12 @@ class View extends React.Component {
             <div style={{overflowX: "auto"}}>
                 <div className="subsection">
                             <div className="subsectitle noselect">
-                                {this.props.user.name}'s employees
+                                Calculated Salary Dashboard
                             </div>
                 
                 <div className="filter">
                     <input type="text" className="tableFilter" placeholder="Filter (ID/First Name/Last Name)" defaultValue= {this.state.filter} onChange={e => this.setState({filter: e.target.value})} />
                     <label htmlFor="name" className="form__label">Displaying results for {this.state.filter}</label>
-                </div>
-                <div className="exportBtn">
-                    <div className="exportBtnIn" onClick={() => filteredData.length > 0 ? this.exportCsv(filteredData) : this.exportCsv(this.state.data)}>
-                        Export CSV
-                    </div>
                 </div>
                 <table className="table rstable">
                     <thead>
@@ -159,7 +96,10 @@ class View extends React.Component {
                             return <Item item={item} key={index} removeItem={() => this.removeEmployee(item, index)} />  
                         })
                         }
-                </table>   
+                </table>
+                <div className="explanantion">
+                    <span>* Calculation method:</span> (Hourly basis * Hours per day * Days per month) + ((% Bonus / 100) * Total sold)
+                </div>   
             </div>
             </div>
         )
@@ -188,20 +128,14 @@ class Item extends React.Component {
     }
 
     render() {
+        var calculatedPercent = this.props.item.percentPerSale / 100;
         return(
         <tbody>
             <tr>
                 <td>{this.props.item.id}</td>
                 <td>{this.props.item.firstName}</td>
                 <td>{this.props.item.lastName}</td>
-                <td>{this.props.item.employeeEmail}</td>
-                <td>{this.props.item.city}</td>
-                <td>{this.props.item.hourlyBasis} $</td>
-                <td>{this.props.item.hoursPerDay} hours</td>
-                <td>{this.props.item.daysPerMonth} days</td>
-                <td>{this.props.item.percentPerSale} %</td>
-                <td>{this.props.item.totalSold} $</td>
-                <td><button type="button" className="close" onClick={this.onClickRemove}>&times;</button></td>
+                <td>{(this.props.item.hourlyBasis * this.props.item.hoursPerDay * this.props.item.daysPerMonth) + calculatedPercent * this.props.item.totalSold} $</td>
             </tr>
         </tbody>
     )}
@@ -211,4 +145,4 @@ const mapStateToProps = state => {
     return { user: state.userEmail.user }
 }
 
-export default connect(mapStateToProps, { signIn })(View);
+export default connect(mapStateToProps, { signIn })(Calc);
