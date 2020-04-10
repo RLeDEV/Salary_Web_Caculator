@@ -28,10 +28,31 @@
 }
 
 .subsection-content{
-  padding: 15px;
+  padding: 10px;
   margin: 10px;
   background: #fff;
   line-height: 22px;
+}
+
+.subsection-content .ability-description {
+  overflow: hidden; 
+  height: 0; opacity: 0;
+  transition: height 0ms 400ms, opacity 400ms 0ms;
+  font-size: 12px;
+}
+
+.subsection-content:nth-child(odd) {
+  background-color: rgba(228, 228, 228, 0.288);
+  margin-left: 60px;
+}
+
+.subsection-content:hover {
+  box-shadow: 0px 2px 20px 0px rgb(187, 187, 187);
+}
+
+.subsection-content:hover .ability-description {
+  height: auto; opacity: 1;
+  transition: height 0ms 0ms, opacity 600ms 0ms;
 }
 
 .subsection-content h3 {
