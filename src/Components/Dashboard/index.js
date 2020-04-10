@@ -32,11 +32,31 @@ class Dashboard extends React.Component {
         </div>
         <div className="subsection-content">
           <div className="ability"><h3>1.</h3>Add employees</div>
+          <div className="ability-description">Add employees using 'Add Employee' dashboard.</div>
+        </div>
+        <div className="subsection-content">
           <div className="ability"><h3>2.</h3>Delete employees</div>
+          <div className="ability-description">Delete employees using 'View Employees' dashboard.</div>
+        </div>
+        <div className="subsection-content">
           <div className="ability"><h3>3.</h3>View employees</div>
+          <div className="ability-description">View all your employees using 'View Employees' dashboard.</div>
+        </div>
+        <div className="subsection-content">
           <div className="ability"><h3>4.</h3>Filter employees</div>
+          <div className="ability-description">With <b>EasyCalc</b> you may filter your employee using 'View Employees' dashboard.</div>
+        </div>
+        <div className="subsection-content">
           <div className="ability"><h3>5.</h3>Export employees to CSV file</div>
+          <div className="ability-description">Using <b>EasyCalc</b> you may export filtered or unfiltered employees into CSV file.</div>
+        </div>
+        <div className="subsection-content">
           <div className="ability"><h3>6.</h3>Calculate Salary</div>
+          <div className="ability-description">Using <b>EasyCalc</b> you may calculate your employees salary based on their properties.</div>
+        </div>
+        <div className="subsection-content">
+          <div className="ability"><h3>7.</h3>Update Sales</div>
+          <div className="ability-description">Update your employees sales using 'Update Sales' dashboard</div>
         </div>
       </div>
     )
