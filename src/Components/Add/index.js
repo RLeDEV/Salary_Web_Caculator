@@ -108,7 +108,7 @@ class Add extends React.Component {
   isNOTLoggedIn = () => {
     return (
       <div>
-        <center>Adding now, please wait..</center>
+        <center>Loading user, please wait..</center>
       </div>
     )
   }
